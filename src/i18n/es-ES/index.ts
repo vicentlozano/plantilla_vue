@@ -4,7 +4,8 @@
 export default {
   failed: 'Action failed',
   success: 'Action was successful',
-  home: 'Home',
-  aboutme: 'About me',
-  example: 'Example',
-}
+  home: 'Inicio',
+  aboutme: 'Sobre mi',
+  example: 'Ejemplo',
+  
+};

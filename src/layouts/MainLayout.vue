@@ -1,102 +1,63 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
-      <q-toolbar>
-        <q-btn
-          flat
-          dense
-          round
-          icon="menu"
-          aria-label="Menu"
-          @click="toggleLeftDrawer"
-        />
-
-        <q-toolbar-title>
-          Quasar App
-        </q-toolbar-title>
-
-        <div>Quasar v{{ $q.version }}</div>
-      </q-toolbar>
-    </q-header>
-
-    <q-drawer
-      v-model="leftDrawerOpen"
-      show-if-above
-      bordered
-    >
-      <q-list>
-        <q-item-label
-          header
-        >
-          Essential Links
-        </q-item-label>
-
-        <EssentialLink
-          v-for="link in linksList"
-          :key="link.title"
-          v-bind="link"
-        />
-      </q-list>
-    </q-drawer>
-
-    <q-page-container>
-      <router-view />
-    </q-page-container>
-  </q-layout>
+  <div class="grid">
+    <HeaderComponent  class='header-app' :routes="headerRoutes" :titlePage="titlePage" :isApp="isApp"/>
+    <router-view />
+    <RouteBar v-if="$q.screen.width < 800 && isApp" />
+  </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import EssentialLink from 'components/EssentialLink.vue'
+import HeaderComponent from 'src/components/HeaderComponent.vue'
 
-const linksList = [
-  {
-    title: 'Docs',
-    caption: 'quasar.dev',
-    icon: 'school',
-    link: 'https://quasar.dev'
-  },
-  {
-    title: 'Github',
-    caption: 'github.com/quasarframework',
-    icon: 'code',
-    link: 'https://github.com/quasarframework'
-  },
-  {
-    title: 'Discord Chat Channel',
-    caption: 'chat.quasar.dev',
-    icon: 'chat',
-    link: 'https://chat.quasar.dev'
-  },
-  {
-    title: 'Forum',
-    caption: 'forum.quasar.dev',
-    icon: 'record_voice_over',
-    link: 'https://forum.quasar.dev'
-  },
-  {
-    title: 'Twitter',
-    caption: '@quasarframework',
-    icon: 'rss_feed',
-    link: 'https://twitter.quasar.dev'
-  },
-  {
-    title: 'Facebook',
-    caption: '@QuasarFramework',
-    icon: 'public',
-    link: 'https://facebook.quasar.dev'
-  },
-  {
-    title: 'Quasar Awesome',
-    caption: 'Community Quasar projects',
-    icon: 'favorite',
-    link: 'https://awesome.quasar.dev'
-  }
+import { useQuasar } from 'quasar'
+import RouteBar from 'src/components/RouteBar.vue'
+
+//data
+const $q = useQuasar()
+const headerRoutes = [
+  { title: 'home', route: '/', iconName: 'mdi-home' },
+  { title: 'aboutme', route: '/aboutme', iconName: 'mdi-account' },
+  { title: 'example', route: '/example', iconName: 'mdi-folder-outline' },
 ]
-
-const leftDrawerOpen = ref(false)
-
-function toggleLeftDrawer () {
-  leftDrawerOpen.value = !leftDrawerOpen.value
-}
+const isApp = false;
+const titlePage = 'example'
 </script>
+
+<style scoped>
+.grid {
+  display: grid;
+  width: 100%;
+  grid-template-rows: min-content 1fr;
+
+  background: white;
+  min-height: 100vh;
+}
+
+.header-app {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+.header{
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+@media (max-width: 800px) {
+  .grid {
+    display: grid;
+    width: 100%;
+    grid-template-rows: min-content 1fr min-content;
+  }
+  .header-app {
+    grid-row: 3;
+    position: sticky;
+    bottom: 0;
+    backdrop-filter: blur(20px);
+    background-color: rgba(7, 32, 52, 0.509);
+    z-index: 1;
+  }
+
+}
+</style>
