@@ -155,7 +155,7 @@ const routeName = computed(() => route.name)
     display: grid;
     grid-template-columns: 1fr;
     gap: 1rem;
-    padding: 1rem 1rem;
+    padding: 0rem 1rem;
     place-items: center;
     height: 3.3rem;
   }
