@@ -1,8 +1,8 @@
 {
-  "name": "e-commerce-vilodev",
+  "name": "plantilla-vue-vilodev",
   "version": "0.0.1",
-  "description": "E-Commerce project ",
-  "productName": "VilodevCommerce",
+  "description": "Una plantilla de Vue.js ",
+  "productName": "PlantillaVue",
   "author": "vicentlozano <lozanodroid@gmail.com>",
   "type": "module",
   "private": true,

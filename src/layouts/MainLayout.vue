@@ -40,7 +40,7 @@ const headerRoutes = [
   { title: 'aboutme', route: '/aboutme', iconName: 'mdi-account' },
   { title: 'example', route: '/example', iconName: 'mdi-folder-outline' },
 ]
-const isApp = true
+const isApp = false
 const titlePage = 'example'
 const bgColor = 'rgba(7, 32, 52, 0.8)';
 const textColor = "white"

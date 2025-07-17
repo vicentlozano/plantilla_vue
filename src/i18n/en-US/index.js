@@ -7,4 +7,6 @@ export default {
   home: 'Home',
   aboutme: 'About me',
   example: 'Example',
+  english: 'English',
+  spanish: 'Spanish'
 }

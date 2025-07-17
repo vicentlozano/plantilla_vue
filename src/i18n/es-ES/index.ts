@@ -7,5 +7,7 @@ export default {
   home: 'Inicio',
   aboutme: 'Sobre mi',
   example: 'Ejemplo',
+  english: 'Inglés',
+    spanish: 'Español',
   
 };
