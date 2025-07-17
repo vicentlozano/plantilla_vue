@@ -4,7 +4,8 @@
     :style="`background-color:${props.bgColor}; color:${props.textColor}`"
   >
     <router-link to="/" class="title">
-      <span class="rotul">&lt;</span>{{ titlePage }}<span class="rotul">/&gt;</span>
+      <span class="rotul">&lt;</span><span :style="`color:${props.textColor}`">{{ titlePage }}</span
+      ><span class="rotul">/&gt;</span>
     </router-link>
     <section class="actions-route">
       <div class="title-route">

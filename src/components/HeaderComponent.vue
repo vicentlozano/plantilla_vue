@@ -1,7 +1,8 @@
 <template>
-  <div class="header"  :style="`background-color:${props.bgColor}; color:${props.textColor}`">
+  <div class="header" :style="`background-color:${props.bgColor}; color:${props.textColor}`">
     <router-link to="/" class="title" v-if="$q.screen.width > 800">
-      <span class="rotul">&lt;</span>{{ titlePage }}<span class="rotul">/&gt;</span>
+      <span class="rotul">&lt;</span><span :style="`color:${props.textColor}`">{{ titlePage }}</span
+      ><span class="rotul">/&gt;</span>
     </router-link>
     <section class="routes">
       <router-link
@@ -9,6 +10,7 @@
         :key="page.title"
         :to="page.route"
         :class="page.title === routeName ? 'custom-link on-route' : 'custom-link'"
+        :style="` color:${props.textColor}`"
       >
         <q-icon class="pre-icon" :name="page.iconName" />
         <span v-if="$q.screen.width > 1200"> {{ t(page.title) }} </span>
@@ -70,6 +72,7 @@ const routeName = computed(() => route.name)
   place-items: center;
   height: 3.4rem;
   backdrop-filter: blur(20px);
+  box-shadow:  0 0 10px 2px rgba(0, 0, 0, 0.2), 0 0px 10px rgba(0, 0, 0, 0.24);
 }
 .routes {
   display: flex;
@@ -87,7 +90,6 @@ const routeName = computed(() => route.name)
   font-size: 1.1em;
   gap: 0.5rem;
   text-decoration: none;
-  color: white;
   padding: 0.3rem 1rem;
   white-space: nowrap;
   border-radius: 30px;
@@ -97,7 +99,7 @@ const routeName = computed(() => route.name)
 .on-route {
   border-radius: 30px;
   backdrop-filter: blur(20px);
-  background-color: rgba(255, 255, 255, 0.145);
+  background-color: rgba(12, 12, 12, 0.146);
 }
 .rotul {
   color: rgb(13, 116, 211);
@@ -109,7 +111,7 @@ const routeName = computed(() => route.name)
   .custom-link:hover {
     border-radius: 30px;
     backdrop-filter: blur(10px);
-    background-color: rgba(255, 255, 255, 0.05);
+  background-color: rgba(12, 12, 12, 0.058);
   }
 }
 @media (max-width: 800px) {

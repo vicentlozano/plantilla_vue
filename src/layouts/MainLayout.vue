@@ -4,27 +4,24 @@
       class="header-app"
       :routes="headerRoutes"
       :titlePage="titlePage"
-      bgColor="rgba(7, 32, 52, 0.509);
-"
-      textColor="white"
+      :bgColor="bgColor"
+      :textColor=textColor
     />
     <router-view />
     <RouteBar
       v-if="$q.screen.width < 800 && isApp"
       :routes="headerRoutes"
       :titlePage="titlePage"
-      bgColor="rgba(7, 32, 52, 0.509)
-"
-      textColor="white"
+      :bgColor="bgColor"
+      :textColor=textColor
     />
   </div>
   <HeaderQuasarComponent
     v-else
     :routes="headerRoutes"
     :titlePage="titlePage"
-    bgColor="rgba(7, 32, 52, 0.509);
-"
-    textColor="white"
+    :bgColor="bgColor"
+    :textColor=textColor
   />
 </template>
 
@@ -45,6 +42,8 @@ const headerRoutes = [
 ]
 const isApp = true
 const titlePage = 'example'
+const bgColor = 'rgba(7, 32, 52, 0.8)';
+const textColor = "white"
 
 //methods
 </script>
@@ -81,7 +80,6 @@ const titlePage = 'example'
     position: sticky;
     bottom: 0;
     backdrop-filter: blur(20px);
-    background-color: rgba(7, 32, 52, 0.509);
     z-index: 1;
   }
 }

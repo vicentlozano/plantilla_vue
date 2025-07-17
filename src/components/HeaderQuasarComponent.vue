@@ -8,7 +8,7 @@
       <q-toolbar>
         <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
 
-        <q-toolbar-title>
+        <q-toolbar-title class="route-text">
           <q-avatar>
             <q-icon :name="routeText.icon" />
           </q-avatar>
@@ -43,10 +43,19 @@
           @click="goTo(page.route)"
           :class="page.title === routeName ? 'custom-link on-route' : 'custom-link'"
         >
-          <q-item-section avatar class="icon">
-            <q-icon :name="page.iconName" />
+          <q-item-section
+            avatar
+            class="icon"
+            :style="`color:${props.textColor};
+`"
+          >
+            <q-icon :name="page.iconName"  size="15px"/>
           </q-item-section>
-          <q-item-section>{{ t(page.title) }}</q-item-section>
+          <q-item-section
+            :style="`color:${props.textColor};
+`"
+            >{{ t(page.title) }}</q-item-section
+          >
         </q-item>
         <q-separator color="white" />
       </q-list>
@@ -133,6 +142,10 @@ const routeText = computed(() => {
 .title-sidebar {
   padding: 1rem 1.4rem;
   text-align: left;
-  background-color: rgba(0, 0, 0, 0.63);
+  background-color: rgba(46, 45, 45, 0.077);
+}
+.route-text {
+  display: flex;
+  align-items: center;
 }
 </style>
