@@ -56,5 +56,7 @@ watch(lang, (val) => {
 }
 .icon{
   padding-right: 3px;
+    min-width: 0px;
+
 }
 </style>
