@@ -49,7 +49,7 @@
             :style="`color:${props.textColor};
 `"
           >
-            <q-icon :name="page.iconName"  size="15px"/>
+            <q-icon :name="page.iconName"  size="17px"/>
           </q-item-section>
           <q-item-section
             :style="`color:${props.textColor};
