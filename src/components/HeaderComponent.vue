@@ -1,5 +1,5 @@
 <template>
-  <div class="header">
+  <div class="header"  :style="`background-color:${props.bgColor}; color:${props.textColor}`">
     <router-link to="/" class="title" v-if="$q.screen.width > 800">
       <span class="rotul">&lt;</span>{{ titlePage }}<span class="rotul">/&gt;</span>
     </router-link>
@@ -17,34 +17,12 @@
           transition-show="flip-right"
           transition-hide="flip-left"
         >
-          {{ t('home') }}
+          {{ t(page.title) }}
         </q-tooltip>
       </router-link>
     </section>
 
-    <section class="actions" v-if="$q.screen.width > 800 || isApp">
-      <q-btn flat round color="primary" icon="mdi-translate" aria-label="Idioma">
-        <q-menu
-          anchor="bottom middle"
-          self="top middle"
-          :offset="[0, 25]"
-          style="background-color: transparent"
-        >
-          <q-list class="center-flags" style="padding: 0">
-            <q-item clickable v-close-popup @click="setLang('es-ES')" style="padding: 4px">
-              <q-item-section avatar style="width: auto; padding: 0">
-                <img src="/flags/es.svg" class="flag" />
-              </q-item-section>
-            </q-item>
-            <q-item clickable v-close-popup @click="setLang('en-US')" style="padding: 4px">
-              <q-item-section avatar style="width: auto; padding: 0">
-                <img src="/flags/en.svg" class="flag" />
-              </q-item-section>
-            </q-item>
-          </q-list>
-        </q-menu>
-      </q-btn>
-    </section>
+    <I18nComponent v-if="$q.screen.width > 800" :color="textColor" />
   </div>
 </template>
 
@@ -52,8 +30,8 @@
 import { useRoute } from 'vue-router'
 import { useQuasar } from 'quasar'
 import { useI18n } from 'vue-i18n'
-const { locale } = useI18n()
-import { ref, watch, computed } from 'vue'
+import { computed } from 'vue'
+import I18nComponent from './I18nComponent.vue'
 
 //data
 const props = defineProps({
@@ -65,21 +43,21 @@ const props = defineProps({
     type: String,
     required: true,
   },
+  bgColor: {
+    type: String,
+    default: 'primary',
+  },
+  textColor: {
+    type: String,
+    default: 'primary',
+  },
 })
 const { t } = useI18n()
 
-const lang = ref(locale.value)
 const $q = useQuasar()
 const route = useRoute()
 //methods
-const setLang = (l) => {
-  lang.value = l
-  locale.value = l
-}
-// computed&watchs
-watch(lang, (val) => {
-  locale.value = val
-})
+
 const routeName = computed(() => route.name)
 </script>
 
@@ -92,7 +70,6 @@ const routeName = computed(() => route.name)
   place-items: center;
   height: 3.4rem;
   backdrop-filter: blur(20px);
-  background-color: rgba(7, 32, 52, 0.509);
 }
 .routes {
   display: flex;
@@ -127,22 +104,7 @@ const routeName = computed(() => route.name)
   font-weight: 800;
   cursor: pointer;
 }
-.center-flags {
-  background-color: rgba(20, 31, 45, 0.662);
-  display: grid;
-  grid-template-rows: 1fr 1fr;
-  place-content: center;
-  height: 100px;
-  width: 65px;
-}
-.flag {
-  padding: 0.5rem;
-  height: 100%;
-  width: 100%;
-}
-.actions {
-  justify-self: right;
-}
+
 @media (hover: hover) and (pointer: fine) {
   .custom-link:hover {
     border-radius: 30px;
